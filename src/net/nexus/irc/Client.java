@@ -1,6 +1,7 @@
 package net.nexus.irc;
 
 import net.nexus.irc.model.Channel;
+import net.nexus.irc.model.Conversable;
 import net.nexus.irc.model.User;
 
 import java.util.Optional;
@@ -45,6 +46,8 @@ public interface Client {
 	Optional<Channel> getChannel(String name);
 
 	Set<Channel> getChannels();
+
+	Optional<Conversable> getConversable(String name);
 
 	User getLocalUser();
 
