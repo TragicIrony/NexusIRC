@@ -5,6 +5,6 @@ package net.nexus.irc.event;
  */
 public interface IRCEventListener {
 
-	void onEvent(IRCEvent event);
+	default void onEvent(IRCEvent event) {}
 
 }

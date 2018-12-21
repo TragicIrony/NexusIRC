@@ -6,6 +6,7 @@ import net.nexus.irc.model.Mode;
 import net.nexus.irc.util.Sanity;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,10 +16,13 @@ import java.util.concurrent.ConcurrentHashMap;
 abstract class ConversableImpl implements Conversable {
 
 	protected final Client client;
+
+	private final Map<String, String> attributes;
 	private final ConcurrentHashMap.KeySetView<Mode, Boolean> modes;
 
 	ConversableImpl(Client client) {
 		this.client = Sanity.nonNull(client, "ConversableImpl#(null)");
+		this.attributes = new ConcurrentHashMap<>();
 		this.modes = ConcurrentHashMap.newKeySet();
 	}
 
@@ -28,6 +32,20 @@ abstract class ConversableImpl implements Conversable {
 
 	void remove(Mode mode) {
 		modes.remove(Sanity.nonNull(mode, "ConversableImpl#remove(null)"));
+	}
+
+	void setAttribute(String key, String value) {
+		Sanity.nonEmpty(key, "ConversableImpl#setAttribute(null, String)");
+
+		if (value == null || value.isEmpty())
+			attributes.remove(key);
+		else
+			attributes.put(key, value);
+	}
+
+	@Override
+	public final String getAttribute(String key) {
+		return attributes.getOrDefault(key, "");
 	}
 
 	@Override

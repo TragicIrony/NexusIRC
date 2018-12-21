@@ -7,6 +7,8 @@ import java.util.Set;
  */
 public interface Conversable {
 
+	String getAttribute(String key);
+
 	Set<Mode> getModes();
 
 	String getName();

@@ -19,6 +19,7 @@ public class KickEvent extends IRCEvent {
 		return parameter.substring(parameter.indexOf(':') + 1);
 	}
 
+	// TODO Needs to be analysed
 	@Override
 	public Optional<Conversable> getRecipient() {
 		return client.getUser(getRecipientValue()).map(user -> user);

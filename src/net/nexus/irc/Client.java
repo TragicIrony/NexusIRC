@@ -49,6 +49,8 @@ public interface Client {
 
 	Optional<Conversable> getConversable(String name);
 
+	Set<Conversable> getConversables();
+
 	User getLocalUser();
 
 	Optional<User> getUser(String name);

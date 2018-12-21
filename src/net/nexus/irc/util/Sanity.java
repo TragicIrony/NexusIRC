@@ -8,8 +8,8 @@ public final class Sanity {
 	private Sanity() {}
 
 	public static String nonEmpty(String string, String error) {
-		if (net.kevin.nexus.irc.util.Sanity.nonNull(string).isEmpty())
-			throw new net.kevin.nexus.irc.util.Sanity.EmptyStringException(error);
+		if (nonNull(string).isEmpty())
+			throw new EmptyStringException(error);
 
 		return string;
 	}
